@@ -68,6 +68,51 @@ The `var` keyword allows you to define local variables without explicitly specif
 - Can make code less readable if overused
 - Not suitable for public API signatures
 
+### The dynamic Keyword
+
+`dynamic` is used when you want the type to be determined at runtime.
+
+#### Key Points:
+- Type is determined at runtime
+- Can change type after initialization
+- Can be declared without initialization
+- Can be initialized with `null`
+- Allows for more flexible but less safe code
+
+#### Usage Examples:
+```csharp
+dynamic data = "Ali";
+data = 5;
+data = true;
+data = 3.3;
+data = 'A';
+
+dynamic x;  // Valid, can be declared without initialization
+dynamic y = null;  // Valid, can be initialized with null
+```
+
+### Comparing var and dynamic
+
+| Feature | var | dynamic |
+|---------|-----|---------|
+| Type Detection | Compile-time | Runtime |
+| Type Changes | Not allowed | Allowed |
+| Null Initialization | Not allowed | Allowed |
+| Usage Scope | Local variables only | More flexible |
+| Error Detection | Compile-time | Runtime |
+
+#### Recommendations:
+- `var` is generally recommended for better performance and earlier error detection
+- Use `var` when the type is obvious from the right side of the assignment
+- Use `dynamic` when working with COM objects or when type is truly unknown until runtime
+
+#### Error Handling Example:
+```csharp
+var x = null;  // Compilation Error
+dynamic y = null;
+Console.WriteLine(y);  // No compilation error, but throws RuntimeBinderException
+```
+
 ## Extension Methods
 
 
