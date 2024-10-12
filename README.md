@@ -124,16 +124,16 @@ Console.WriteLine(x.GetType().Name); // Output: Int32
 
 ```mermaid
 graph TD
-    A[Start] --> B{Create object?}
-    B -->|One-time use| C[Use Anonymous Type]
-    B -->|Reusable| D[Create Class]
-    C --> E[var obj = new { prop1, prop2, ... }]
-    D --> F[class MyClass { ... }]
-    F --> G[MyClass obj = new MyClass { ... }]
-    E --> H{Same properties as existing?}
-    H -->|Yes| I[Reuse existing type]
-    H -->|No| J[Create new anonymous type]
-    I --> K[End]
-    J --> K
-    G --> K
+    A[Start] --> B{One-time use?}
+    B -->|Yes| C[Use Anonymous Type]
+    B -->|No| D[Create Named Class]
+    C --> E{Declare variable}
+    E -->|var| F[Type-safe, easy property access]
+    E -->|object| G[Flexible, requires casting]
+    D --> H[Traditional class usage]
+    F --> I[End]
+    G --> I
+    H --> I
 ```
+
+
