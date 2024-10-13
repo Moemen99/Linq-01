@@ -261,7 +261,6 @@ var Emp03 = Emp01 with { Salary = 20_000 };
 Anonymous types are considered the same type if they have:
 1. Same property names (case-sensitive)
 2. Same property order
-3. Same property data types
 
 ```csharp
 var Hamda = new { Id = 20, Name = "Hamda", Salary = 200 };
