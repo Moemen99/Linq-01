@@ -115,6 +115,92 @@ Console.WriteLine(y);  // No compilation error, but throws RuntimeBinderExceptio
 
 ## Extension Methods
 
+Extension methods allow you to add new methods to existing types without modifying the original type. This is particularly useful for adding functionality to types you can't modify, such as built-in types or types from third-party libraries.
+
+### Creating Extension Methods
+
+To create an extension method:
+
+1. Define a static class to contain the extension method(s).
+2. Create a static method with the first parameter using the `this` keyword, followed by the type you're extending.
+3. The `this` parameter represents the instance the method will be called on.
+
+### Example: Reversing Numbers
+
+Let's create an extension method to reverse integers:
+
+```csharp
+public static class IntExtension
+{
+    public static int Reverse(this int number)
+    {
+        int reversedNumber = 0;
+        while (number != 0)
+        {
+            int reminder = number % 10;
+            reversedNumber = reversedNumber * 10 + reminder;
+            number /= 10;
+        }
+        return reversedNumber;
+    }
+}
+```
+
+Usage in main:
+
+```csharp
+int x = 12345;
+int y = x.Reverse();
+Console.WriteLine(y); // Outputs: 54321
+```
+
+### Generalizing Extension Methods
+
+To make the extension method work with multiple numeric types, we can use interfaces. For example, `IComparable` is implemented by most numeric types:
+
+```csharp
+
+    private static int ReverseInteger(int number)
+    {
+        int reversedNumber = 0;
+        while (number != 0)
+        {
+            int reminder = number % 10;
+            reversedNumber = reversedNumber * 10 + reminder;
+            number /= 10;
+        }
+        return reversedNumber;
+    }
+
+    private static long ReverseLong(long number)
+    {
+        long reversedNumber = 0;
+        while (number != 0)
+        {
+            long reminder = number % 10;
+            reversedNumber = reversedNumber * 10 + reminder;
+            number /= 10;
+        }
+        return reversedNumber;
+    }
+}
+```
+
+Usage:
+
+```csharp
+int x = 12345;
+long z = 1115466448489;
+
+Console.WriteLine(x.Reverse()); // Outputs: 54321
+Console.WriteLine(z.Reverse()); // Outputs: 9848446645111
+```
+
+Key Points:
+- Extension methods must be defined in static, non-generic classes.
+- The `this` keyword before the first parameter makes it an extension method.
+- Extension methods appear as instance methods on the extended type.
+- They can be used to add functionality to interfaces, allowing for more generic extensions.
 
 ## Anonymous Types
 
